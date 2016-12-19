@@ -6,6 +6,27 @@ from smsserver.utils.provider.base import BaseClient, SMSSendFailed
 
 
 class YunPianV1Client(BaseClient):
+    '''
+    云片 client
+
+    支持类型
+    可以发送国内短信、国内语音和国际短信
+    国内短信通知：同时用于验证码和通知类模板消息，发送时直接发送，会自动匹配模板
+    国际短信通知：类似国内，但和国内用不同的模板，国际多只支持英文内容
+    语音通知：语音播放数字验证码，格式固定，可以设置 4 ~ 6 位阿拉伯数字
+    营销短信：用于推广，模板中可以有变量，结尾有“回T退订”
+
+    API
+    国内短信：单发、群发相同、群发不同
+    国际短信：单发
+    语音：播放语音验证码
+
+    使用
+    - 使用国内短信单发 API 发送验证码、通知类模板消息
+    - 使用国际短信单发 API 发送英文验证码
+    - 用语音验证码 API 发送国内语音验证码
+    '''
+
     DOMAIN = 'http://yunpian.com'
 
     def __init__(self, apikey):
